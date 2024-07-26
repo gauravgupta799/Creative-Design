@@ -11986,6 +11986,10 @@ p, ul, ol, body {
   max-width: 25ch;
 }
 
+.services-card__body h5 {
+  color: #aa2424;
+}
+
 .certified-brands-list {
   list-style: none;
   display: flex;

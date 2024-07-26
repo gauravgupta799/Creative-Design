@@ -117,8 +117,6 @@
     // }
 }
 
-
-
 .steps{
     &__body{
         p{
@@ -126,6 +124,14 @@
             // @include breakpoint-xxl{
             //     max-width: 25ch;
             // }
+        }
+    }
+}
+
+.services-card{
+    &__body{
+        h5{
+            color:$clr-secondary;
         }
     }
 }

@@ -1,0 +1,168 @@
+@use "../abstract/mixins" as *;
+@use "../abstract/functions" as *;
+@use "../abstract/fonts" as *;
+@use "../abstract/colors" as *;
+
+// ===== base and responsive font size  ========
+
+// font: style variant weight size/line-height family
+// ----Desktop------   -----Mobile------
+// H1 - 100/0.92/400         48
+// H2 - 92/0.92/400          40
+// H3 - 64/1.125             36
+// H4 - 48/1.125             32   
+// H5 - 36/1.125             26
+// H6 - 32/1.125             24   
+
+
+// Breakpoint values for min-width operators.
+$breakpoints: (
+  sm: em(576),
+  md: em(768),
+  lg: em(992),
+  xl: em(1200),
+  xxl:em(1600),
+);
+
+
+// Null is mobile, no breakpoint.
+$p-font-sizes: (
+  null:(rem(18), rem(26)), // Font sizes and line height 
+  sm: (rem(18), rem(26)),
+  md: (rem(18), rem(26)),
+  lg: (rem(18), rem(26)),
+  xl: (rem(18), rem(26)),
+  xxl:(rem(20), rem(28)), 
+);
+
+
+$h1-font-sizes: (
+  null: (rem(48), rem(56)),   
+  sm: (rem(48), rem(56)),
+  md: (rem(60), rem(67)),
+  lg: (rem(72), rem(78)),
+  xl: (rem(84), rem(78)),
+  xxl: (rem(100), rem(92)),
+);
+
+$h2-font-sizes:(
+  null:(rem(44), rem(41)), 
+  sm:(rem(54), rem(50)),
+  md:(rem(60), rem(56)),
+  lg:(rem(72), rem(67)),
+  xl:(rem(84), rem(78)),
+  xxl:(rem(92), rem(85)),
+);
+
+$h3-font-sizes: (
+  null:(rem(40), rem(45)), 
+  sm:(rem(40), rem(45)),
+  md:(rem(44), rem(50)),
+  lg:(rem(48), rem(54)),
+  xl:(rem(56), rem(63)),
+  xxl:(rem(64), rem(72)),
+);
+
+$h4-font-sizes: (
+  null:(rem(36), rem(41)), 
+  sm :(rem(36), rem(41)),
+  md :(rem(40), rem(45)),
+  lg :(rem(40), rem(45)),
+  xl :(rem(44), rem(50)),
+  xxl :(rem(48), rem(54)),
+);
+
+$h5-font-sizes: (
+  null:(rem(28), rem(32)), 
+  sm :(rem(28), rem(32)),
+  md :(rem(30), rem(32)),
+  lg :(rem(32), rem(36)),
+  xl :(rem(34), rem(39)),
+  xxl:(rem(36), rem(41)),
+); 
+
+
+$h6-font-sizes: (
+  null: (rem(24), rem(27)),
+  sm : (rem(24), rem(27)),
+  md : (rem(26), rem(30)),
+  lg : (rem(28), rem(32)),
+  xl:  (rem(30), rem(34)),
+  xxl: (rem(32), rem(36)),
+); 
+
+
+@mixin font-size($fs-map, $fs-breakpoints:$breakpoints){
+    @each $fs-breakpoint, $fs-font-size in $fs-map{
+        @if $fs-breakpoint == null{
+            @include make-font-size($fs-font-size);
+        }
+        @else{
+            @if map-has-key($fs-breakpoints, $fs-breakpoint){
+                $fs-breakpoint:map-get($fs-breakpoints, $fs-breakpoint);
+            }
+            @media screen and (min-width:$fs-breakpoint){
+                @include make-font-size($fs-font-size);
+            }
+        }
+    }
+}
+
+
+// Utility function for mixin font-size
+@mixin make-font-size($fs-font-size){
+    @if type-of($fs-font-size) == "list" {
+        font-size:nth($fs-font-size, 1);
+        @if (length($fs-font-size) > 1){
+            line-height: nth($fs-font-size, 2);
+        }
+    }
+    @else{
+        font-size: $fs-font-size;
+    }
+}
+
+
+// ======== adding both font size and font-family mixins====
+h1{
+    @include font-size($h1-font-sizes);
+}
+h2{
+    @include font-size($h2-font-sizes);
+}
+h3{
+    @include font-size($h3-font-sizes);
+}
+h4{
+    @include font-size($h4-font-sizes);
+}
+h5{
+    @include font-size($h5-font-sizes);
+}
+h6{
+    @include font-size($h6-font-sizes);
+}
+
+h1, h2, h3, h4, h5, h6{
+    @include font-heading;
+    span{
+        font-family: $ff-primary-italic;
+    }
+}
+
+.bg-colored{
+    h1, h2, h3, h4, h5, h6{
+        color: $clr-tertiary;
+    }
+}
+
+p, ul, ol, body{
+    @include font-size($p-font-sizes);
+    @include font-body;
+}
+
+.bg-colored{
+    p, ul, ol, small, span, a{
+        color: $clr-tertiary;
+    }
+}

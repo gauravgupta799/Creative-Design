@@ -1,0 +1,267 @@
+@use "../abstract/breakpoints" as *;
+@use "../abstract/colors" as *;
+@use "../abstract/fonts" as *;
+@use "../abstract/functions" as *;
+@use "../abstract/mixins" as *;
+
+
+.footer{
+    background: $clr-secondary;
+    &__link-title{
+        color:$clr-white;
+        line-height: 1.11;
+        font-size: 24px;
+        display: inline-flex;
+        @include breakpoint-sm{
+            font-size: 26px;
+        }
+        @include breakpoint-md{
+            font-size: 28px;
+        }
+        @include breakpoint-xl{
+            font-size: 32px;
+        }
+        @include breakpoint-xxl{
+            font-size: 36px
+        }
+    }
+    &__link{
+        position: relative;
+        overflow: hidden;
+        font-size: rem(16);
+        line-height: 2;
+        text-transform: capitalize;
+        @include link-hover-effect($clr-tertiary, $clr-primary);
+        @include breakpoint-md{
+            font-size: rem(18);
+            line-height: 1.8;
+        }
+        @include breakpoint-xxl{
+            font-size: rem(20);
+        }
+        
+        address{
+            @extend .footer__link;
+            line-height: 1.65;
+            display: inline-flex;
+        }
+
+        &:hover{
+            background-position: 0 0;
+        }
+    }
+
+    &__bottom-right-wrapper{
+        @include flex-center-vertical;
+        gap:16px;
+
+        small{
+            color:$clr-white;
+            margin-top: 0;
+        }
+    }
+
+    &__socials-list{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.socials-list{
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+
+.socials-item{
+    position: relative;
+    overflow: hidden;
+}
+
+.socials-link{
+    position: relative;
+    overflow: hidden;
+    padding:em(10);
+    @include border-radius(50%);
+    @include flex-center; 
+    transition:all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+    z-index: 1;
+    span{
+        display: flex;
+    }
+    &::before{
+        content:"";
+        position: absolute;
+        @include full-dimensions;
+        background: $clr-primary;
+        clip-path: circle(0.0% at 50% 100%);
+        transition:clip-path 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+        z-index: -1;
+    }
+
+    &:hover{
+        cursor: pointer;
+        &::before{
+            clip-path: circle(50% at 50% 50%);
+        }
+        svg {
+            path{
+                fill:$clr-white;
+            }
+        }
+    } 
+
+}
+
+.copyright-text-wrapper{
+    position: relative;
+    overflow: hidden;
+    small{
+        display: inline-flex;
+        color:$clr-white;
+        margin-top: 0;
+        font-size: 20px;
+        line-height: 1.8;
+    }
+}
+
+.cta-link{
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    @include breakpoint-sm{
+        gap: 32px;
+    }
+
+    span{
+        // color:$clr-white;
+        font-size: rem(24);
+        line-height: 1.11;
+        font-family: $ff-primary;
+        @include link-hover-effect($clr-tertiary, $clr-primary);
+
+        @include breakpoint-sm{
+            font-size: rem(26);
+        }
+        @include breakpoint-md{
+            font-size: rem(28);
+        }
+        @include breakpoint-xl{
+            font-size: rem(32);
+        }
+        @include breakpoint-xxl{
+            font-size: rem(36);
+        }
+
+        svg{
+            path{
+                fill:$clr-white;
+                transition:fill 0.3s ease;
+            }
+        }
+    }
+
+    &:hover{
+        span{
+            background-position: 0 0;
+        }
+        svg{
+            path{
+                fill:$clr-primary;
+            }
+        }
+    }
+}
+
+.copyright-text-wrapper{
+    small{
+        font-size: 16px;
+        line-height: 1.8;
+    
+        @include breakpoint-md{
+            font-size: 18px;
+        }
+
+        @include breakpoint-xxl{
+            font-size: 20px;
+        }
+    }
+}
+
+.sitemap-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.text-small {
+    font-size: 16px;
+    line-height: 1.8;
+
+    @include breakpoint-md{
+        font-size: 18px;
+    }
+    @include breakpoint-xxl{
+        font-size: 20px;
+    }
+}
+
+.certfied-list{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    @include breakpoint-sm{
+        gap:32px;
+    }
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        @include breakpoint-sm{
+            gap: 28px;
+        }
+
+        span{
+            font-size: 16px;
+            line-height: 1.56;
+
+            @include breakpoint-xxl{
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: rem(64);
+
+    @include breakpoint-sm{
+        grid-template-columns: repeat(3, 1fr);
+       gap: rem(64);
+    }
+    @include breakpoint-xl{
+        gap: rem(80);
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.steps-grid-container{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: rem(64);
+
+    @include breakpoint-sm{
+        grid-template-columns: repeat(2, 1fr);
+        gap: rem(32);
+    }
+    @include breakpoint-md{
+        grid-template-columns: repeat(3, 1fr);
+        gap: rem(16);
+    }
+    @include breakpoint-xl{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

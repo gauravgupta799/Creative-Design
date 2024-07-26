@@ -1,0 +1,121 @@
+@use "../abstract/breakpoints" as *;
+@use "../abstract/colors" as *;
+@use "../abstract/fonts" as *;
+@use "../abstract/functions" as *;
+@use "../abstract/mixins" as *;
+
+// ================================
+.header{
+    position: fixed; 
+    z-index: 9;
+    top:0;
+    left: 0;
+    width: 100%;
+    transform:translateY(0);
+    background: $clr-white;
+}
+
+// ================================
+.header-top{
+    background: $clr-secondary;
+    padding-block:12px;
+    display: none;
+    @include breakpoint-lg{
+        display: block;
+    }
+
+    &__container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__left{
+        .box{
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            span{
+                color:$clr-tertiary;
+                font-size: 16px;
+                line-height: 1.56;
+
+                @include breakpoint-lg{
+                    font-size: 14px;
+                }
+
+                @include breakpoint-xxl{
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
+
+.header-desktop{
+    transition:all 0.25s ease;
+    padding-block:em(20);
+}
+
+
+.header{
+    &__inner-desktop{
+        position: relative;
+        @include flex-center-vertical;
+        justify-content: space-between;
+        transition: transform 0.25s ease;
+        // display: none;
+        // @include breakpoint-lg{
+        //     display: flex;
+        // }
+    }
+
+    &__right{
+        display: flex;
+        align-items: center;
+        gap:20px;
+        @include breakpoint-xxl{
+            gap:32px;
+        }
+         display: none;
+        @include breakpoint-lg{
+            display: flex;
+        }
+    }
+
+    &__mobile{
+        @extend .header__inner-desktop;
+        display: flex;
+        padding:em(16);
+        margin-top: 16px;
+        @include breakpoint-lg{
+            display: none;
+        }
+    }
+}
+// ================================
+
+
+// ================================
+.header-desktop.sticky{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+}
+
+// .header__mobile
+// ========== hamburger =============
+.hamburger-wrapper{
+    cursor: pointer;
+    display: flex;
+    transform:rotate(180deg);
+    @include breakpoint-lg{
+        display: none;
+    }
+}
+
+
+
+#close-form-btn{
+    position: absolute;
+    right: 0;
+    top: 0;
+ }

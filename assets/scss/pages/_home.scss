@@ -1,0 +1,180 @@
+@use "../abstract/breakpoints" as *;
+@use "../abstract/colors" as *;
+@use "../abstract/fonts" as *;
+@use "../abstract/functions" as *;
+@use "../abstract/mixins" as *;
+
+
+
+.hero{
+    position: relative;
+    &__inner{
+        position: relative;
+        // background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        // url('../../../assets/images/home/home-banner.webp');
+        background-image:   url('../../../assets/images/home/home-banner.webp');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include flex-center;
+        height: 100vh;
+    }
+    &__contents{
+        h1, p{
+            color:$clr-tertiary;
+        }
+    }
+    &__footer{
+        position: absolute;
+        left: 0;
+        bottom:0;
+        width: 100%;
+        background: $clr-black;
+    }
+
+    .ratings-wrapper{
+        @include flex-center-vertical;
+        justify-content: space-between;
+        @include breakpoint-lg{
+            gap:32px;
+        }
+        @include breakpoint-xl{
+            gap:40px;
+        }
+        @include breakpoint-xxl{
+            gap:48px;
+        }
+    }
+
+    .counters{
+        @include flex-center-vertical;
+        justify-content: space-between;
+        .counter-item{
+            h4,p{
+                color:$clr-tertiary;
+            }
+            .counter-title{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                @include breakpoint-md{
+                    justify-content: flex-start;
+                }
+            }
+        }
+    }
+}
+
+.trust{
+    &__content-wrapper{
+        padding-block:em(22);
+        // padding-left: 1em;
+
+        // @include breakpoint-md{
+        //     padding-left: 1.5em;
+        // }
+        // @include breakpoint-lg{
+        //     padding-left: 2em;
+        // }
+        // @include breakpoint-xxl{
+        //     padding-left: 2.5em;
+        // }
+
+        h5{
+            position: relative;
+            &::before{
+                content:"";
+                position: absolute;
+                left: 0;
+                top: 6px;
+                @include dimensions(20px , 20px);
+                background: $clr-secondary;
+                border-radius: 50%;
+                margin-left: -52px;
+
+                @include breakpoint-md{
+                    @include dimensions(22px , 22px);
+                }
+                @include breakpoint-md{
+                    @include dimensions(24px , 24px);
+                }
+                @include breakpoint-xl{
+                    @include dimensions(26px , 26px);
+                }
+            }
+        }
+    }
+    // &__title-wrapper{
+    //     display: flex;
+    //     .circle{
+    //         width: 26px;
+    //         height: 26px;
+    //         background: $clr-secondary;
+    //         border-radius: 50%;
+    //     }
+    // }
+}
+
+
+
+.steps{
+    &__body{
+        p{
+            max-width: 25ch;
+            // @include breakpoint-xxl{
+            //     max-width: 25ch;
+            // }
+        }
+    }
+}
+
+.certified-brands-list{
+    list-style: none;
+    @include flex-space-between;
+}
+
+.swiper-btns-wrapper{
+    position: relative;
+    overflow: hidden;
+    @include flex-center-vertical;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.swiper-action-btns{
+    @include flex-center;
+    @include dimensions(rem(48), rem(48));
+    border-radius:50%;
+    background: $clr-quartery;
+    border:1px solid $clr-secondary;
+    transition:all 0.35s ease;
+
+    @include breakpoint-sm{
+        @include dimensions(rem(54), rem(54));
+    }
+    @include breakpoint-md{
+        @include dimensions(rem(64), rem(64));
+    }
+    @include breakpoint-lg{
+        @include dimensions(rem(80), rem(80));
+    }
+
+    svg path{
+        fill: $clr-secondary;
+        transition:fill 0.35s ease;
+    }
+
+    &:hover{
+        border-color: $clr-secondary;
+        background: $clr-secondary;
+        svg path{
+            fill: $clr-white;
+        }
+    }
+}
+
+#swiper-prev-btn{
+    transform: rotate(180deg);
+}

@@ -1,0 +1,166 @@
+@use '../abstract/breakpoints' as *;
+@use '../abstract/colors' as *;
+@use "../abstract/fonts" as *;
+@use '../abstract/functions' as *;
+@use '../abstract/mixins' as *;
+
+
+.form{
+    &__group{
+        position: relative;
+    }
+    &__control{
+        width: 100%;
+        background: $clr-quartery;
+        outline:none;
+        border:1px solid $clr-grey-1;
+        padding-inline: em(16);
+        color:$clr-primary;
+        font-size: rem(18);
+        // line-height: 1.4;
+        line-height: 3.4;
+        font-family: $ff-secondary;
+        @include breakpoint-md{
+            padding-inline:em(20);
+            font-size: rem(20);
+        }
+        &:focus, &:hover{
+            border-color: $clr-secondary;  
+        }
+    }
+
+    &__label{
+        pointer-events: none;
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        font-family: $ff-secondary;
+        font-size: rem(18);
+        line-height: 1.4;
+        text-transform: capitalize;
+        padding-left: 1em;
+        transform: translateY(-50%);
+        transition: all .3s ease;
+     
+        @include breakpoint-md{
+            font-size: rem(20);
+        }
+    }
+
+}
+.form__control:focus + label,
+.form__control:valid + label{
+    top: 18px;
+    font-size: rem(16);
+}
+
+.form__control:focus + label{
+    color:$clr-secondary;
+}
+
+
+// .form-group-wrapper{
+//     position: relative;
+//     @include flex-center-vertical;
+//     padding:8px;
+//     @include border-radius(8px);
+//     background: $clr-white;
+
+//     .form__control{
+//         outline: none;
+//         padding-block:0;
+//     }
+// }
+
+// .footer-form-control{
+//     line-height: 3;
+// }
+
+
+
+// ========== Custom Select Start==============
+.custom-select-wrapper {
+    position: relative;
+}
+
+.custom-select {
+    position: relative;
+    @include flex-cloumn;
+}
+
+.custom-select-trigger {
+    position: relative;
+    @include flex-space-between;
+    gap:10px;
+    cursor: pointer;
+
+    .arrow {
+        @include dimensions(rem(10),rem(10));
+        border-left: 2px solid $clr-grey-1;
+        border-bottom: 2px solid $clr-grey-1;
+        transform: translateY(-1px) rotate(-45deg);
+        @include transition(transform, 0.35s , ease);
+        transform-origin: center;
+    }
+}
+
+.custom-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: $clr-white;
+    border: 1px solid #ddd;
+    border-top: none;
+    max-height: 200px;
+    width: 180px;
+    overflow-y: auto;
+    z-index: 1;
+    @include border-radius(4px);
+    margin-left: -65px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+    margin-top: 4px;
+    display: none;
+    flex-direction: column;
+    @include breakpoint-xxl{
+        margin-left: -55px;
+    }
+
+    span{
+        margin-top: 0;
+    }
+}
+
+.custom-option {
+    padding: 10px;
+    transition: background-color 0.3s;
+    @include border-radius(4px);
+    &:hover, .selected{
+        cursor: pointer;
+        color:$clr-white;
+        background-color: $clr-secondary;
+    }
+}
+
+.custom-select-wrapper.open{
+    .arrow {
+        transform: translateY(0px) rotate(140deg);
+    }
+    .custom-options {
+        display: flex;
+    }
+}
+// ========== Custom Select End==============
+
+
+// .border-after{
+//     content: "";
+//     position: absolute;
+//     left: 0;
+//     width: 0;
+//     height: 1px;
+//     bottom: -1px;
+//     z-index: 1;
+//     background-color: $clr-secondary;
+//     transition: width 0.5s ease-out;
+// }

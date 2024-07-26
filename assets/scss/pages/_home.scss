@@ -178,3 +178,28 @@
 #swiper-prev-btn{
     transform: rotate(180deg);
 }
+
+
+// ---------- ABout -------------
+.values{
+    .values-wrapper{
+        display: flex;
+        // align-items: center;
+        gap:32px;
+        padding-block:em(18);
+
+        @include breakpoint-md{
+            padding-block:em(24);
+        }
+        @include breakpoint-lg{
+            padding-block:em(28);
+            padding-right: em(16);
+        }
+        @include breakpoint-xxl{
+            padding-block:em(48);
+            padding-right: em(32);
+        }
+    }
+}
+
+// Meet Carmine Argano

@@ -47,12 +47,21 @@ $h1-font-sizes: (
 
 $h2-font-sizes:(
   null:(rem(44), rem(41)), 
-  sm:(rem(54), rem(50)),
-  md:(rem(60), rem(56)),
-  lg:(rem(72), rem(67)),
-  xl:(rem(84), rem(78)),
-  xxl:(rem(92), rem(85)),
+  sm:(rem(44), rem(41)),
+  md:(rem(56), rem(52)),
+  lg:(rem(68), rem(63)), 
+  xl:(rem(76), rem(70)), 
+  xxl:(rem(84), rem(78)),
 );
+
+// $h2-font-sizes:(
+//   null:(rem(44), rem(41)), 
+//   sm:(rem(54), rem(50)),
+//   md:(rem(60), rem(56)),
+//   lg:(rem(72), rem(67)), 
+//   xl:(rem(84), rem(78)), 
+//   xxl:(rem(92), rem(85)),
+// );
 
 $h3-font-sizes: (
   null:(rem(40), rem(45)), 

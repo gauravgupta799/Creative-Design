@@ -58,26 +58,6 @@
     color:$clr-secondary;
 }
 
-
-// .form-group-wrapper{
-//     position: relative;
-//     @include flex-center-vertical;
-//     padding:8px;
-//     @include border-radius(8px);
-//     background: $clr-white;
-
-//     .form__control{
-//         outline: none;
-//         padding-block:0;
-//     }
-// }
-
-// .footer-form-control{
-//     line-height: 3;
-// }
-
-
-
 // ========== Custom Select Start==============
 .custom-select-wrapper {
     position: relative;
@@ -153,14 +133,20 @@
 // ========== Custom Select End==============
 
 
-// .border-after{
-//     content: "";
-//     position: absolute;
-//     left: 0;
-//     width: 0;
-//     height: 1px;
-//     bottom: -1px;
-//     z-index: 1;
-//     background-color: $clr-secondary;
-//     transition: width 0.5s ease-out;
-// }
+.media-figure{
+    position: relative;
+    iframe{
+        width: 100%;
+        height: 300px;
+        border: 0;
+        @media only screen and (min-width:1366px){
+            height: 368px;
+        }
+    }
+
+    .map-btn{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}

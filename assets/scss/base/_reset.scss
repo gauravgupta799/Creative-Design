@@ -114,13 +114,13 @@ textarea{
 
 a {
   text-decoration: none;
-  color:inherit;
+  color:$clr-primary;
 }
 
 address{
   font-style:normal;
   font-size:100%;
-  color:$clr-white;
+  color:$clr-primary;
 }
 
 small{

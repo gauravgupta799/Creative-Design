@@ -97,6 +97,12 @@
     }
 }
 
+// @include media($width, $width-type){
+//     @media only screen and ($width-type-width:$width){
+//         @content;
+//     }
+// }
+
 // ======== setting font for header and body ======= //
 @mixin font-heading{
     font-family: $ff-primary;

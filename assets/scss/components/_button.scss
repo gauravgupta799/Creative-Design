@@ -21,7 +21,10 @@
     @include transition(all, 0.3s, ease);
     z-index: 1;
 
-    @include breakpoint-lg{
+    @media only screen and (min-width:1280px){
+        font-size: rem(22);
+    }
+    @media only screen and (min-width:1440px){
         font-size: rem(24);
     }
     @include breakpoint-xxl{
@@ -57,11 +60,14 @@
         padding:0;
 
         span{
-            font-size: 16px;
+            font-size: 14px;
             line-height: 1.78;
             font-family: $ff-secondary;
             text-decoration: underline;
             text-transform:lowercase;
+            @media only screen and (min-width:1366px){
+                font-size: rem(16);
+            }
             @include breakpoint-xxl{
                 font-size: 18px;
             }
@@ -127,14 +133,14 @@
 
 .h-phone-btn{
     span{
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.6;
         font-style: italic;
         font-weight: bold;
         text-decoration: underline;
         font-family: $ff-secondary;
 
-        @include breakpoint-xxl{
+        @media only screen and (min-width:1366px){
             font-size: rem(20);
         }
     }

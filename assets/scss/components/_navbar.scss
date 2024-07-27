@@ -23,10 +23,13 @@
         @include relative-hidden;
         display: inline-flex;
         align-items: center;
-        font-size: rem(18);
+        font-size: rem(16);
         line-height: 1.6;
         text-transform: uppercase;
         font-family: $ff-secondary;
+        @media only screen and (min-width:1366px){
+            font-size: rem(18);
+        }
         @include breakpoint-xxl{
             font-size: rem(20);
         }
@@ -47,7 +50,7 @@
 
 .nav, .header__right{
     display: none;
-    @include breakpoint-lg{
+    @include breakpoint-xl{
         display: flex;
     }
 }

@@ -37,14 +37,15 @@
             position: relative;
             display: inline-flex;
             margin: 0;
+            @include link-hover-effect($clr-primary, $clr-secondary);
         }
 
-        // &.active,
-        // &:hover{
-        //     span{
-        //         background-position: 0 0;
-        //     }
-        // }
+        &.active,
+        &:hover{
+            span{
+                background-position: 0 0;
+            }
+        }
     }
 }
 
@@ -65,7 +66,7 @@
     background: $clr-primary;
     transform:translateX(-100%);
     transition:transform 0.2s ease-out;
-    display: none;
+    // display: none;
     @include breakpoint-lg{
         transform:translateX(-100%) !important;
     }
@@ -79,28 +80,41 @@
     }
     &__link{
         @include relative-hidden;
-        color:$clr-white;
+        // color:$clr-white;
         text-transform: uppercase;
         font-size: rem(32);
         line-height: 2;
         font-family: $ff-primary;
         display: inline-flex;
         align-items: center;
-        gap:5px;
+        gap:10px;
         @include breakpoint-md{
             font-size: rem(36);
         }
         span{
+            // color:$clr-primary;
             display: inline-flex;
             margin: 0;
-            // @include link-hover-effect($clr-white, $clr-secondary);
+            @include link-hover-effect($clr-white, $clr-secondary);
         }
 
         &:hover{
             span{
-                color:$clr-secondary;
-                // background-position: 0 0;
+                // color:$clr-secondary;
+                background-position: 0 0;
             }
+        }
+    }
+
+    .footer__link{
+        @include link-hover-effect($clr-white, $clr-secondary);
+        &:hover{
+            background-position: 0 0;
+        }
+    }
+    .socials-link{
+        &::before{
+            background: $clr-secondary;
         }
     }
 }
@@ -115,7 +129,7 @@
         position: absolute;
         background: $clr-primary;
         background: $clr-white;
-        width: 240px;
+        width: 260px;
         @include border-radius(4px);
         box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
         transform: translateY(10px);
@@ -124,7 +138,6 @@
 
         li{
             @include relative-hidden;
-            padding:0.8em 1em;
             @include border-radius(4px);
             white-space: nowrap;
             ul{
@@ -157,14 +170,15 @@
             transition: max-height 0.3s ease;
 
             li{
-                display: flex;
-                padding: 0.8em 1em;
+                display: inline-flex;
+                // padding: 0.8em 1em;
                 @include border-radius(4px);
                 .subMenu__link{
                     transform:translateY(0);
                     color:$clr-white;
-                    font-size: rem(22);
+                    font-size: rem(20);
                     font-family: $ff-primary;
+                    padding-block:0.7em;
                 }
                 &:hover{
                     background-color: $clr-secondary;
@@ -179,14 +193,15 @@
     &__link{
         $n:10;
         display: inline-block;
-        color:$clr-black;
-        font-size: rem(18);
+        color:$clr-primary;
+        font-size: rem(16);
         line-height: 1.15;
-        font-family: $ff-primary;
+        padding:1em;
+        font-family: $ff-secondary;
         transform: translateY(50px);
         transition: transform .2s ease;
         transition-duration: 0.5s;
-        text-transform: uppercase;
+        text-transform: capitalize;
         width: 100%;
 
         @for $i from 1 through $n {
@@ -194,6 +209,10 @@
               transition-delay: 0.1s * $i;
             }
         } 
+
+        @include breakpoint-xl{
+            font-size: rem(18);
+        }
     }
 
     &:hover{

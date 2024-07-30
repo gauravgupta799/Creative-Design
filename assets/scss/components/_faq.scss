@@ -26,6 +26,7 @@
         display: flex;
         gap:rem(16);
         @include transition(all, 0.25s, ease);
+        // @include link-hover-effect($clr-primary, $clr-secondary );
         &::after{
             content: "+";
             color:$clr-secondary;
@@ -45,7 +46,6 @@
         @include relative-hidden;
         text-align:left;
     }
-
     &__content{
         position: relative;
         overflow: hidden;
@@ -61,6 +61,7 @@
     cursor: pointer;
     .accordion__title{
         color: $clr-secondary;
+        // background-position: 0 0;
     }
     .accordion__icon-wrapper{
         span{
@@ -76,6 +77,7 @@
 .accordion__title-wrapper.active{
     .accordion__title{
         color: $clr-secondary;
+        // background-position: 0 0;
         &::after{
             content:"-";
         }

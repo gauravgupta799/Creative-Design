@@ -18,7 +18,7 @@
 // ================================
 .header-top{
     background: $clr-secondary;
-    padding-block:12px;
+    padding-block:6px;
     display: none;
     @include breakpoint-xl{
         display: block;
@@ -52,7 +52,7 @@
 
 .header-desktop{
     transition:all 0.25s ease;
-    padding-block:em(20);
+    padding-block:em(16);
 }
 
 
@@ -62,10 +62,6 @@
         @include flex-center-vertical;
         justify-content: space-between;
         transition: transform 0.25s ease;
-        // display: none;
-        // @include breakpoint-lg{
-        //     display: flex;
-        // }
     }
 
     &__right{

@@ -6,39 +6,54 @@
 
 
 .form{
+    &__group-wrapper{
+        @include flex-center-vertical;
+        gap:16px;
+        border:1px solid $clr-grey-1;
+        background: $clr-quartery;
+        padding-left: 1em;
+        @include breakpoint-sm{
+            gap:20px;
+        }
+    }
     &__group{
         position: relative;
+        width: 100%;
     }
     &__control{
         width: 100%;
         background: $clr-quartery;
         outline:none;
-        border:1px solid $clr-grey-1;
-        padding-inline: em(16);
+        border:none;
+        // border:1px solid $clr-grey-1;
+        // padding-inline: em(16);
         color:$clr-primary;
         font-size: rem(18);
-        // line-height: 1.4;
         line-height: 3.4;
         font-family: $ff-secondary;
+        caret-color: $clr-secondary;
+      
         @include breakpoint-md{
-            padding-inline:em(20);
+            // padding-inline:em(20);
             font-size: rem(20);
         }
-        &:focus, &:hover{
-            border-color: $clr-secondary;  
-        }
+
+        // &:focus, &:hover{
+        //     border-color: $clr-secondary;  
+        // }
     }
 
     &__label{
         pointer-events: none;
         position: absolute;
         top: 50%;
-        left: 10px;
+        // left: 10px;
+        left: 0;
         font-family: $ff-secondary;
         font-size: rem(18);
         line-height: 1.4;
         text-transform: capitalize;
-        padding-left: 1em;
+        // padding-left: 1em;
         transform: translateY(-50%);
         transition: all .3s ease;
      
@@ -48,10 +63,39 @@
     }
 
 }
+
+.field-icon{
+    display: flex;
+    pointer-events: none;
+    svg{
+        path{
+            transition: fill .3s ease;
+            fill:$clr-grey-1;
+        }
+    }
+}
+
+
+.form__group-wrapper{
+    &:focus-within{
+        border-color: $clr-secondary;  
+        svg{
+            path{
+                fill:$clr-secondary;
+            }
+        }
+    }
+}
+
 .form__control:focus + label,
 .form__control:valid + label{
-    top: 18px;
+    top: 0px;
+    left: -10px;
     font-size: rem(16);
+    background: $clr-tertiary;
+    padding-inline:10px;
+    border-radius: 20px;
+    line-height: 1;
 }
 
 .form__control:focus + label{
@@ -141,6 +185,9 @@
         border: 0;
         @media only screen and (min-width:1366px){
             height: 368px;
+        }
+        @include breakpoint-xxl{
+            height: 410px;
         }
     }
 

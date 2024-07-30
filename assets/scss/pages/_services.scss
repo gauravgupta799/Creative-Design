@@ -1,0 +1,115 @@
+@use "../abstract/breakpoints" as *;
+@use "../abstract/colors" as *;
+@use "../abstract/fonts" as *;
+@use "../abstract/functions" as *;
+@use "../abstract/mixins" as *;
+
+
+
+.why-choose{
+    &__card{
+        position: relative;
+        background: $clr-tertiary;
+        padding:em(24) em(16);
+        padding-top: em(80);
+
+        @include breakpoint-xl{
+            padding:em(36) em(20);
+            padding-top: em(96);
+        }
+        @include breakpoint-xxl{
+            padding:em(48) em(28);
+            padding-top: em(100);
+        }
+
+        figure{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+}
+
+.results{
+    .results-stats-container {
+        position: relative;
+        &::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            margin-top: 14rem;
+            background: $clr-white;
+            @include breakpoint-sm{
+                margin-top: 10rem;
+            }
+            @include breakpoint-lg{
+                margin-top: 7rem;
+            }
+        }
+    }
+    
+    .results-stats-inner{
+        position: relative;
+        background: $clr-primary;
+        padding: em(42) em(16);
+        border: solid 1px $clr-grey-1;
+        @include flex-center-vertical;
+        flex-wrap: wrap;
+
+        @include breakpoint-md{
+            padding-inline:0;
+            justify-content: center;
+        }
+        @include breakpoint-xxl{
+            padding-inline:em(112);
+        }
+
+        .stats-wrapper{
+            @include flex-center-vertical;
+            gap: 10px;
+            @media only screen and (min-width:21em){
+                padding-inline:1em;
+            }
+            @include breakpoint-md{
+                padding-inline:1em;
+                gap: 2px;
+            }
+            @include breakpoint-lg{
+                padding-inline:2em;
+                gap: 10px;
+            }
+
+            &:not(:last-child){
+                border-right: 1px solid $clr-white;
+                margin-bottom: 3rem;
+                @include breakpoint-md{
+                    border-right: 1px solid $clr-white;
+                }
+                @include breakpoint-md{
+                    margin-bottom: 0;
+                }
+            }
+
+
+            figure{
+                width: 80px;
+                height: 80px;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    max-width: 100%;
+                }
+            }
+        }
+    
+        .counter{
+            @include flex-center-vertical;
+            font-size: clamp(2rem, 6vw + 1rem, 3.75rem);
+            line-height:0.84;
+            font-family: $ff-primary;
+        }
+    }
+}

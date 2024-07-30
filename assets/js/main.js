@@ -3,6 +3,8 @@ const body = document.querySelector(".body");
 const header = document.querySelector(".header-desktop");
 const hamburgerBtn = document.getElementById("hamburger-btn");
 const scrollingHeader = document.querySelector(".header");
+// const scrollingHeader = document.querySelector(".header-desktop");
+const headerTop = document.querySelector(".header-top");
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -46,6 +48,12 @@ function stickyHeader() {
   const scrollY = lenis.scroll;
   if(header){
       scrollY > 20 ? header.classList.add("sticky") : header.classList.remove("sticky");
+
+      if(scrollY === 0){
+        headerTop.style.display = "block";
+      }else{
+        headerTop.style.display = "none";
+      }
   }
 }
 //======= Sticky Header End ===========
@@ -130,19 +138,19 @@ window.onload = function(){
         duration:1.2,
         delay:-1.4,
     })
-    .from(".hero-banner-img", {
+    .from([".counter-title" , ".counter-subTitle"], {
         y:50,
         duration:1.25,
         delay:-1.45,
+        stagger:0.10,
         ease:"power3.out"
     })
-    .fromTo(".icon-box", 
-        { opacity:0,  y:50, },
-        { 
-            opacity:1, y:0, 
-            stagger:0.15,
-            delay:-1.5, 
-            duration:1, 
+    .from(".ratings-item figure", { 
+            opacity:0,
+            y:20,
+            stagger:0.1,
+            delay:-1.45, 
+            duration:1.5, 
             ease:"power3.out" 
         }
     )
@@ -151,39 +159,40 @@ window.onload = function(){
 
 
 //====== Active Page Link Start ======
-// const windowPathname = window.location.pathname;
-// const navLinks = document.querySelectorAll(".nav__link");
-// const mobileNavLinks = document.querySelectorAll(".mobile-menu__link");
+const windowPathname = window.location.pathname;
+const navLinks = document.querySelectorAll(".nav__link");
+const mobileNavLinks = document.querySelectorAll(".mobile-menu__link");
 
-// function activeLink(link) {
-//     const linkPathname = new URL(link.href).pathname;
-//     if((windowPathname === linkPathname) || (windowPathname === "./index.html" && linkPathname === "/")){
-//         link.classList.add("active");
-//     }
-// }
+function activeLink(link) {
+    // const linkPathname = new URL(link.href).pathname;
+    const linkPathname = new URL(link.href, window.location.origin).pathname;
+    if((windowPathname === linkPathname) || (windowPathname === "./index.html" && linkPathname === "/")){
+        link.classList.add("active");
+    }
+}
 
-// navLinks && navLinks.forEach((navLink) => {
-//     activeLink(navLink);
-// });
+navLinks && navLinks.forEach((navLink) => {
+    activeLink(navLink);
+});
 
-// mobileNavLinks && mobileNavLinks.forEach((navLink) => {
-//     activeLink(navLink);
-// });
+mobileNavLinks && mobileNavLinks.forEach((navLink) => {
+    activeLink(navLink);
+});
 //====== Active Page Link End ======
 
 
 //====== Toggle Mobile Menu Start ==========
-// function toggleMobileMenu(){
-//     const mobileMenu = document.querySelector(".mobile-menu");
-//     mobileMenu.classList.toggle("is-open");
-//     stopLenisScroll();
-// }
+function toggleMobileMenu(){
+    const mobileMenu = document.querySelector(".mobile-menu");
+    mobileMenu.classList.toggle("is-open");
+    stopLenisScroll();
+}
 
-// if(hamburgerBtn){
-//     hamburgerBtn.onclick = toggleMobileMenu;
-//     const closeMenuBtn = document.getElementById("close-menu-btn");
-//     closeMenuBtn.onclick = toggleMobileMenu;
-// }
+if(hamburgerBtn){
+    hamburgerBtn.onclick = toggleMobileMenu;
+    const closeMenuBtn = document.getElementById("close-menu-btn");
+    closeMenuBtn.onclick = toggleMobileMenu;
+}
 //====== Toggle Mobile Menu End ==========
 
 
@@ -201,44 +210,44 @@ const swiperServices = new Swiper('.services-swiper', {
     breakpoints: {
         500: {
             slidesPerView: 2,
-        },
-        768: {
-            slidesPerView: 2.5,
-        },
-        1280: {
-            slidesPerView: 3,
             spaceBetween:48,
         },
-        1400: {
+        768: {
+            slidesPerView: 2.2,
+        },
+        992: {
+            slidesPerView: 3,
+        },
+        1366: {
             slidesPerView: 4,
+            spaceBetween:40,
+        },
+        1600:{
+            slidesPerView: 4,
+            spaceBetween:48,
         },
     }
 });
 
-// const swiperPost = new Swiper('.swiper-post', {
-//     slidesPerView: 1.4,
-//     grabCursor: true,
-//     loop:true,
-//     autoplay: {
-//         delay: 2000,
-//       },
-//     spaceBetween:7,
-//     breakpoints: {
-//         500: {
-//             slidesPerView: 2.4,
-//         },
-//         768: {
-//             slidesPerView: 3.4,
-//         },
-//         992: {
-//             slidesPerView: 4.4,
-//         },
-//         1200: {
-//             slidesPerView: 5,
-//             spaceBetween:2,
-//         },
-//     }
-// });
+const swiperJourney = new Swiper('.journey-slider-container', {
+    slidesPerView: 1.5,
+    grabCursor: true,
+    spaceBetween:20,
+    breakpoints: {
+        500: {
+            slidesPerView: 2.3,
+        },
+        768: {
+            slidesPerView: 2.5,
+        },
+        992: {
+            slidesPerView: 3.5,
+        },
+        1280: {
+            slidesPerView: 4,
+        },
+    }
+});
 // ============ Swipers End =================
 
 
@@ -274,29 +283,26 @@ function toggleAccordion(accordions){
 const accordions = document.querySelectorAll(".accordion__title-wrapper");
 accordions && toggleAccordion(accordions);
 
-// const filterAccordions = document.querySelectorAll(".filter-label");
-// filterAccordions && toggleAccordion(filterAccordions);
-
 
 // ---------- Mobile SubMenu Start --------
-// const mobileSubmenu = document.querySelectorAll(".mobile-submenu ");
-// mobileSubmenu && mobileSubmenu.forEach((submenu)=>{
-//     submenu.addEventListener("click", function(){
-//         const menu = submenu.querySelector(".subMenu__list--mobile");
-//         submenu.classList.toggle("active");
-//         let content = menu;
-//         if (content) {
-//             content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
-//         }
+const mobileSubmenu = document.querySelectorAll(".mobile-submenu ");
+mobileSubmenu && mobileSubmenu.forEach((submenu)=>{
+    submenu.addEventListener("click", function(){
+        const menu = submenu.querySelector(".subMenu__list--mobile");
+        submenu.classList.toggle("active");
+        let content = menu;
+        if (content) {
+            content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
+        }
 
-//         mobileSubmenu.forEach((acdnItem)=>{
-//             if(acdnItem !== submenu){
-//                 acdnItem.classList.remove("active");
-//                 acdnItem.querySelector(".subMenu__list--mobile").style.maxHeight = null;
-//             }
-//         })
-//     })
-// })
+        mobileSubmenu.forEach((acdnItem)=>{
+            if(acdnItem !== submenu){
+                acdnItem.classList.remove("active");
+                acdnItem.querySelector(".subMenu__list--mobile").style.maxHeight = null;
+            }
+        })
+    })
+})
 // ---------- Mobile SubMenu End --------
 
 // ======== Accordian Toggle End ========
@@ -362,51 +368,39 @@ accordions && toggleAccordion(accordions);
 // }
 //========== Video Play /Pause Button End ============
 
-
-
-// ===== Mobile Filter Tabs Start ======
-// function openTab(event, tabName){
-//     // Hide All Tab Contents
-//     const tabContents = document.querySelectorAll(".tab-content");
-//     tabContents && tabContents.forEach((tabContent)=>{
-//         tabContent.classList.remove("active");
-//     });
-
-//     // Remove Active Class From All The Tablinks
-//     const tabLinks = document.querySelectorAll(".tablinks");
-//     tabLinks && tabLinks.forEach((tabLink)=>{
-//         tabLink.classList.remove("active");
-//     });
-
-//     // Show the current tab and active class to the tab link
-//     const currentTab =  document.getElementById(tabName);
-//     currentTab && currentTab.classList.add("active");
-//     const tabChildren = currentTab.children;
-//     gsap.fromTo(tabChildren , 
-//         { 
-//             opacity:0, 
-//             y:50
-//         },
-//         {
-//             opacity:1,
-//             y:0,
-//             duration:1,
-//             stagger:0.15,
-//             ease:"power3.out"
-//         }
-//     )
-//     event.currentTarget.classList.add("active");
-// }
-
-// // Add event listeners to all tablinks
-// const tabLinks = document.querySelectorAll(".tablinks");
-// tabLinks && tabLinks.forEach((tabLink)=>{
-//     tabLink.addEventListener("click", (e)=>{
-//         const tabName = tabLink.dataset.tab;
-//         openTab(e, tabName);
-//     })
-// })
-// // ===== Mobile Filter Tabs End ======
+// ========== Counter script start ============
+const counterSections = document.querySelectorAll(".counter-section");
+counterSections && counterSections.forEach((counterSection)=>{
+    const counters = counterSection.querySelectorAll(".counter-number");
+    if(counters.length > 0) {
+        let CounterObserver = new IntersectionObserver(
+            (entries, observer)=>{
+                let [entry] = entries;
+                if(!entry.isIntersecting) return;
+        
+                let speed = 200;
+                counters.forEach((counter, index) => {
+                    const updateCounter = () =>{
+                        let targetNumber = +counter.dataset.target;
+                        let initialNumber = +counter.innerText;
+                        let incPerCount = targetNumber / speed;
+                        if(initialNumber  < targetNumber ){
+                            counter.innerText = Math.ceil(initialNumber + incPerCount);
+                            setTimeout(updateCounter, 40);
+                        }
+                    }
+                    updateCounter();
+                })
+                observer.unobserve(counterSection);
+            },{
+                root:null,
+                threshold:0.4,
+            }
+        );
+        CounterObserver.observe(counterSection);
+    }
+})
+// ============ Counter script end ============
 
 
 // ========= Animation Starts =========
@@ -415,15 +409,15 @@ const fadeIn = gsap.utils.toArray(".fade-in");
 fadeIn.forEach((mainContent, i) => {
     const anim = gsap.fromTo(mainContent,
         { opacity: 0 },
-        { opacity: 1, duration: 1.25, ease: "power4.in" }
+        { opacity: 1, duration: 1, ease: "power3.in" }
     );
     ScrollTrigger.create({
         trigger: mainContent,
         animation: anim,
         toggleActions: "play",
         once: true,
-        duration: 1.25,
-        stagger:0.15,
+        duration: 1,
+        stagger:0.1,
         ease: "power3.in"
     });
 });
@@ -433,15 +427,15 @@ const fadeInUp = gsap.utils.toArray(".fade-in-up");
 fadeInUp.forEach((item, i) => {
     const anim = gsap.fromTo(item,
         { opacity: 0, y: 60},
-        { opacity: 1, y: 0, duration: 1.15, ease: "power3.out" }
+        { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
     );
     ScrollTrigger.create({
         trigger: item,
         animation: anim,
         toggleActions: "play",
         once: true,
-        duration: 1.15,
-        stagger:0.15,
+        duration: 1,
+        stagger:0.1,
         ease: "power3.out"
     });
 });
@@ -497,12 +491,13 @@ menuHamburgerBtn.onclick = function(){
             {
                 opacity:0,
                 y:60,
-                ease:"power3.inOut"
+                rotation:7,
             },{
                 opacity:1,
                 y:0,
-                duration:1,
-                stagger:0.5,
+                duration:1.25,
+                stagger:0.75,
+                rotation:0,
                 ease:"power3.inOut"
             }
         )
@@ -512,7 +507,6 @@ menuHamburgerBtn.onclick = function(){
         {
             opacity:0,
             y:100,
-            ease:"power4.inOut"
         },{
             opacity:1,
             y:0,
@@ -525,20 +519,23 @@ menuHamburgerBtn.onclick = function(){
     gsap.from(".footer__link-title",{
         opacity:0,
         y:50,
-        duration:0.85,
+        duration:0.95,
+        rotation:7,
         delay:0.25,
         ease:"power3.inOut"
     })
     gsap.fromTo(".footer__list-item", 
         {
             opacity:0,
-            y:50,        
+            y:50, 
+            rotation:7,       
         },{
             opacity:1,
             y:0,
             duration:1,
             stagger:0.25,
             delay:0.35,
+            rotation:0,
             ease:"power3.inOut"
         }
     )
@@ -546,13 +543,12 @@ menuHamburgerBtn.onclick = function(){
         {
             opacity:0,
             y:50,
-         
         },{
             opacity:1,
             y:0,
             duration:1,
-            stagger:0.2,
-            delay:0.4,
+            stagger:0.1,
+            delay:0.2,
             ease:"power3.inOut"
         }
     )
@@ -583,8 +579,9 @@ closeMenuBtn.onclick = function(){
             },{
                 opacity:0,
                 y:60,
-                duration:1,
-                stagger:0.5,
+                duration:1.25,
+                stagger:0.75,
+                rotation:7,
                 ease:"power3.inOut"
             }
         )

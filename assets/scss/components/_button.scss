@@ -64,12 +64,29 @@
             line-height: 1.78;
             font-family: $ff-secondary;
             text-decoration: underline;
+            text-decoration-color: $clr-white;
             text-transform:lowercase;
+            @include link-hover-effect($clr-white,$clr-primary);
             @media only screen and (min-width:1366px){
                 font-size: rem(16);
             }
             @include breakpoint-xxl{
                 font-size: 18px;
+            }
+        }
+        svg path{
+            width: 28px;
+            height: 24px;
+            fill:$clr-white;
+            transition:all 0.3 ease;
+        }
+        &:hover{
+            span{
+                background-position:  0 0;
+                text-decoration-color: $clr-primary;
+            }
+            svg path{
+                fill:$clr-primary;
             }
         }
     }
@@ -117,7 +134,7 @@
     gap:rem(4);
     padding: 0;
     span{
-        color:$clr-primary;
+        @include link-hover-effect($clr-primary, $clr-secondary);
     }
     svg{
         path{
@@ -126,22 +143,90 @@
     }
     &:hover{
         span{
-            color:$clr-secondary;
+            background-position: 0 0;
         }
     }
 }
 
 .h-phone-btn{
+   
     span{
         font-size: 16px;
         line-height: 1.6;
         font-style: italic;
         font-weight: bold;
-        text-decoration: underline;
         font-family: $ff-secondary;
 
         @media only screen and (min-width:1366px){
             font-size: rem(20);
         }
+        &:nth-child(2) {
+            text-decoration: underline;
+            text-decoration-color: $clr-primary;
+        }
+    }
+
+    &:hover{
+       span{
+            &:nth-child(2) {
+                text-decoration-color: $clr-secondary;
+            } 
+       }
+    }
+}
+
+
+
+/* Base Styling */
+
+.h-phone-btn svg {
+    width:30px;
+    height:30px;
+}
+.h-phone-btn svg path {
+    fill:#aa2424;
+}
+.h-phone-btn svg path:nth-child(1) {
+    fill:none;
+    stroke-width:4px;
+    stroke:#aa2424;
+}
+.h-phone-btn svg path:nth-child(2) {
+    animation: header-phone 1s infinite cubic-bezier(.1, .57, .5, 1);
+}
+.h-phone-btn svg path:nth-child(3) {
+    animation:header-phone2 1s infinite cubic-bezier(.1, .57, .5, 1);
+}
+  
+  
+  
+  
+  /* Animate phone */
+  
+@keyframes header-phone {
+    0%,30%{
+        opacity:0;
+        transform:translate3d(-20px, 20px, 0);
+    }
+    80%{
+          opacity:1;
+          transform:translate3d(0, 0, 0);
+    }
+    100%{
+        opacity:0
+    }
+}
+
+@keyframes header-phone2 {
+    0%{
+        opacity:0;
+        transform:translate3d(-20px, 20px, 0);
+    }
+    70%,90% {
+        opacity:1; 
+        transform:translate3d(0, 0, 0);
+    }
+    100%{
+        opacity:0
     }
 }

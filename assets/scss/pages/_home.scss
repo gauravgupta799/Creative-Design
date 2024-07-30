@@ -10,14 +10,12 @@
     position: relative;
     &__inner{
         position: relative;
-        // background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        // url('../../../assets/images/home/home-banner.webp');
-        background-image:   url('../../../assets/images/home/home-banner.webp');
+        // background-image:   url('../assets/images/home/home-banner.webp');
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.59), rgba(0, 0, 0, 0.59)), 
+         url('../assets/images/home/home-banner.webp');
         background-size: cover;
         background-position: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include flex-center;
         @include flex-center;
         height: 100vh;
     }
@@ -37,6 +35,7 @@
     .ratings-wrapper{
         @include flex-center-vertical;
         justify-content: space-between;
+        gap: 1rem;
         @include breakpoint-lg{
             gap:32px;
         }
@@ -69,19 +68,10 @@
 
 .trust{
     &__content-wrapper{
-        padding-block:em(22);
-        // padding-left: 1em;
-
-        // @include breakpoint-md{
-        //     padding-left: 1.5em;
-        // }
-        // @include breakpoint-lg{
-        //     padding-left: 2em;
-        // }
-        // @include breakpoint-xxl{
-        //     padding-left: 2.5em;
-        // }
-
+        padding-block:em(28);
+        @include breakpoint-md{
+            padding-block:em(22);
+        }
         h5{
             position: relative;
             &::before{
@@ -106,24 +96,40 @@
             }
         }
     }
-    // &__title-wrapper{
-    //     display: flex;
-    //     .circle{
-    //         width: 26px;
-    //         height: 26px;
-    //         background: $clr-secondary;
-    //         border-radius: 50%;
-    //     }
-    // }
 }
 
 .steps{
     &__body{
         p{
             max-width: 25ch;
-            // @include breakpoint-xxl{
-            //     max-width: 25ch;
-            // }
+        }
+    }
+    &__header{
+        @include flex-center-vertical;
+        position: relative;
+        z-index: 1;
+        h2{
+            background: $clr-white;
+            padding-right: 16px;
+        }
+        &::after{
+            content: "";
+            position: absolute;
+            width: 86%;
+            height: 1px; 
+            background-image: linear-gradient(to right, $clr-secondary 60%,  transparent 0%);
+            background-size: 16px 2px;
+            z-index: -1;
+        }
+        
+        &.last{
+            &::after{
+                content: "";
+                display: block;
+                @include breakpoint-lg{
+                    display: none;
+                }
+            }
         }
     }
 }
@@ -157,6 +163,16 @@
     border:1px solid $clr-secondary;
     transition:all 0.35s ease;
 
+    // &::before{
+    //     content:"";
+    //     position: absolute;
+    //     @include full-dimensions;
+    //     background: $clr-secondary;
+    //     clip-path: circle(0.0% at 50% 100%);
+    //     transition:clip-path 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+    //     z-index: -1;
+    // }
+
     @include breakpoint-sm{
         @include dimensions(rem(54), rem(54));
     }
@@ -175,6 +191,9 @@
     &:hover{
         border-color: $clr-secondary;
         background: $clr-secondary;
+        // &::before{
+        //     clip-path: circle(50% at 50% 50%);
+        // }
         svg path{
             fill: $clr-white;
         }
@@ -190,11 +209,10 @@
 .values{
     .values-wrapper{
         display: flex;
-        // align-items: center;
         gap:32px;
-        padding-block:em(18);
+        padding-block:em(20);
 
-        @include breakpoint-md{
+        @include breakpoint-sm{
             padding-block:em(24);
         }
         @include breakpoint-lg{
@@ -208,4 +226,101 @@
     }
 }
 
+.results-grid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 3rem;
+    place-items: first baseline;
+    @include breakpoint-sm{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4rem;
+    }
+    @include breakpoint-lg{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @include breakpoint-xl{
+        gap: 6rem;
+    }
+    @include breakpoint-xxl{
+        gap: 10rem;
+    }
+}
+
+.resultsCard{
+    background: $clr-tertiary;
+    padding:em(32);
+    &__header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .counter{
+        display: flex;
+        font-size: clamp(4rem, 6vw + 1rem , 6rem);
+        line-height: 1.2;
+        font-family: $ff-primary;
+
+    }
+}
+
+.journey-slider-container{
+    border-top: 1px solid $clr-grey-1;
+}
+.journey-slider-wrapper{
+    position: relative;
+    @include flex-center-vertical;
+    gap:1rem;
+    @include breakpoint-lg{
+        gap:3rem;
+    }
+
+    .journey-slide{
+        position: relative;
+        margin-top: -2rem; 
+    }
+    .slide-number{
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 1rem;
+        background: $clr-secondary;
+        color:$clr-white;
+        width: 56px;
+        height: 56px;
+        @include flex-center;
+        font-size: 24px;
+        line-height: 1.2;
+        @include border-radius(50%);
+        z-index: 1;
+
+        &::before{
+            content:url("../assets/icons/dotted-line-v.svg");
+            left: 0;
+            position: absolute;
+            top: 0;
+            transform: translate(110%, 0%);
+            z-index: -1;
+        }
+    }
+
+    .slide-content{
+        margin-top: 160px;
+        @include breakpoint-md{
+            padding-right: 3rem;
+        }
+        @include breakpoint-lg{
+            padding-right: 5rem;
+        }
+        @include breakpoint-xl{
+            padding-right: 8rem;
+        }
+    }
+}
 // Meet Carmine Argano
+
+
+.counter-item{
+    position: relative;
+     overflow: hidden;
+}

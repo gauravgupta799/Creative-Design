@@ -65,9 +65,14 @@
 }
 
 .socials-list {
-    display: flex;
-    justify-content: space-between;
     list-style: none;
+    display: flex;
+    gap:2rem;
+    margin-left: -1rem;
+    @include breakpoint-xl{
+        margin-left: 0;
+        justify-content: flex-end;
+    }
 
     &--contact {
         justify-content: flex-start;
@@ -216,7 +221,14 @@
 .sitemap-list{
     @include relative-hidden;
     display: flex;
-    justify-content: space-between;
+    gap: 0.9rem;
+    @media (min-width: 400px){
+        gap: 2rem;
+    }
+    @include breakpoint-xl{
+        gap: 1rem;
+        justify-content: flex-end;
+    }
 }
 
 

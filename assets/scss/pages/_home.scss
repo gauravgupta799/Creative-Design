@@ -10,7 +10,6 @@
     position: relative;
     &__inner{
         position: relative;
-        // background-image:   url('../assets/images/home/home-banner.webp');
         background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.59), rgba(0, 0, 0, 0.59)), 
          url('../assets/images/home/home-banner.webp');
         background-size: cover;
@@ -176,11 +175,8 @@
     @include breakpoint-sm{
         @include dimensions(rem(54), rem(54));
     }
-    @include breakpoint-md{
-        @include dimensions(rem(64), rem(64));
-    }
     @include breakpoint-lg{
-        @include dimensions(rem(80), rem(80));
+        @include dimensions(rem(64), rem(64));
     }
 
     svg path{

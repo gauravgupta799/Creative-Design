@@ -11481,11 +11481,11 @@ p, ul, ol, body {
 }
 
 .h-phone-btn svg path:nth-child(2) {
-  animation: header-phone 1s infinite cubic-bezier(0.1, 0.57, 0.5, 1);
+  animation: header-phone 1.5s infinite cubic-bezier(0.1, 0.57, 0.5, 1);
 }
 
 .h-phone-btn svg path:nth-child(3) {
-  animation: header-phone2 1s infinite cubic-bezier(0.1, 0.57, 0.5, 1);
+  animation: header-phone2 1.5s infinite cubic-bezier(0.1, 0.57, 0.5, 1);
 }
 
 /* Animate phone */
@@ -11693,6 +11693,60 @@ p, ul, ol, body {
   position: absolute;
   right: 0;
   bottom: 0;
+}
+
+.service-form-group {
+  position: relative;
+}
+.service-form-group .services-list {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 400px;
+  margin-top: 4.5rem;
+  border: 1px solid green;
+  background: #000;
+}
+
+.custom-select {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.custom-select::after {
+  content: url("../assets/icons/chevron-dwon.svg");
+  position: absolute;
+  right: 32px;
+  pointer-events: none;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+.custom-select select {
+  position: relative;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 100%;
+  border: none;
+  color: #1e1e1e;
+  font-size: 1.125rem;
+  line-height: 3.4;
+  font-family: "DmSans-Regular", sans-serif;
+  padding-left: 2.5em;
+  background: transparent;
+}
+@media only screen and (min-width: 48em) {
+  .custom-select select {
+    font-size: 1.25rem;
+  }
+}
+
+.custom-select:focus-within::after {
+  transform: translateY(-50%) rotate(180deg);
 }
 
 .nav__menu {
@@ -12003,7 +12057,13 @@ p, ul, ol, body {
 @media only screen and (min-width: 48em) {
   .accordion__container {
     padding-block: 2.25em;
+    padding-right: 1rem;
     gap: 16px;
+  }
+}
+@media only screen and (min-width: 48em) {
+  .accordion__container {
+    padding-right: 2rem;
   }
 }
 .accordion__title {
@@ -12012,14 +12072,27 @@ p, ul, ol, body {
   display: flex;
   gap: 1rem;
   transition: all 0.25s ease;
+  color: #aa2424;
 }
 .accordion__title::after {
   content: "+";
-  color: #aa2424;
+  color: #1e1e1e;
   flex-shrink: 0;
   position: absolute;
   right: 0;
   transition: all 0.25s ease;
+  font-size: 40px;
+  font-weight: 600;
+}
+@media only screen and (min-width: 36em) {
+  .accordion__title::after {
+    font-size: 44px;
+  }
+}
+@media only screen and (min-width: 48em) {
+  .accordion__title::after {
+    font-size: 48px;
+  }
 }
 .accordion__icon-wrapper span {
   display: flex;
@@ -12310,16 +12383,10 @@ p, ul, ol, body {
     height: 3.375rem;
   }
 }
-@media only screen and (min-width: 48em) {
+@media only screen and (min-width: 62em) {
   .swiper-action-btns {
     width: 4rem;
     height: 4rem;
-  }
-}
-@media only screen and (min-width: 62em) {
-  .swiper-action-btns {
-    width: 5rem;
-    height: 5rem;
   }
 }
 .swiper-action-btns svg path {
@@ -12616,7 +12683,16 @@ p, ul, ol, body {
 .header-top__container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+}
+@media only screen and (min-width: 75em) {
+  .header-top__container {
+    gap: 3rem;
+  }
+}
+@media only screen and (min-width: 100em) {
+  .header-top__container {
+    gap: 4rem;
+  }
 }
 .header-top__left .box {
   display: flex;
@@ -12641,7 +12717,7 @@ p, ul, ol, body {
 
 .header-desktop {
   transition: all 0.25s ease;
-  padding-block: 1em;
+  padding-block: 0.75em;
 }
 
 .header__inner-desktop, .header__mobile {
@@ -12776,9 +12852,16 @@ p, ul, ol, body {
 }
 
 .socials-list {
-  display: flex;
-  justify-content: space-between;
   list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin-left: -1rem;
+}
+@media only screen and (min-width: 75em) {
+  .socials-list {
+    margin-left: 0;
+    justify-content: flex-end;
+  }
 }
 .socials-list--contact {
   justify-content: flex-start;
@@ -12958,7 +13041,18 @@ p, ul, ol, body {
   position: relative;
   overflow: hidden;
   display: flex;
-  justify-content: space-between;
+  gap: 0.9rem;
+}
+@media (min-width: 400px) {
+  .sitemap-list {
+    gap: 2rem;
+  }
+}
+@media only screen and (min-width: 75em) {
+  .sitemap-list {
+    gap: 1rem;
+    justify-content: flex-end;
+  }
 }
 
 .text-small {

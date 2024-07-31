@@ -31,38 +31,47 @@ ScrollTrigger.scrollerProxy(document.body, {
 ScrollTrigger.defaults({ scroller: document.body })
 
 
-// Toggle the header on scroll
+// ====== Toggle Header On Scroll Start =======
 let prevScrollPos = lenis.scroll;
 function toggleHeader() {
     let currentScrollPos = lenis.scroll;
     if(prevScrollPos > currentScrollPos){
         scrollingHeader.style.transform = "translateY(0)";
+        header.classList.add("sticky") ;
     }else{
         scrollingHeader.style.transform = "translateY(-186px)";
+        header.classList.remove("sticky");
     }
     prevScrollPos = currentScrollPos;
 }
+// ====== Toggle Header On Scroll End =======
 
-//====== Sticky Header start ==========
-function stickyHeader() {
-  const scrollY = lenis.scroll;
-  if(header){
-      scrollY > 20 ? header.classList.add("sticky") : header.classList.remove("sticky");
-
-      if(scrollY === 0){
-        headerTop.style.display = "block";
-      }else{
-        headerTop.style.display = "none";
-      }
-  }
+function toggleTopHeader () {
+    const scrollY = lenis.scroll;
+    scrollY === 0 ?  headerTop.style.display = "block" : headerTop.style.display = "none";
 }
-//======= Sticky Header End ===========
 
+function changeScreen(e){
+    if(e.matches){
+        headerTop.style.display = "block";
+        lenis.on('scroll', () => {
+            e.matches && toggleTopHeader();
+        });     
+    }else{
+        headerTop.style.display = "none";
+    }
+}
+
+const mql = window.matchMedia("(min-width: 1200px)");
+mql.addEventListener("change", changeScreen);
+
+//======= Sticky Header End ===========
 
 lenis.on('scroll', (e) => {
     toggleHeader();
-    stickyHeader();
+    mql.matches && toggleTopHeader();
 });
+
 
 function raf(time) {
     lenis.raf(time);
@@ -337,36 +346,6 @@ mobileSubmenu && mobileSubmenu.forEach((submenu)=>{
 // ============ Custom select box end ============
 
 
-//========== Video Play /Pause Button Start ============
-// const playBtns = document.querySelectorAll(".play-button-wrapper");
-// if(playBtns) {
-//   const videoContainer = document.querySelector(".video__popup-container");
-//   const closeBtn = document.querySelector(".video__popup-close");
-//   let iframe = document.querySelector(".video__popup-iframe-container > iframe");
-
-//   function togglePopup() {
-//     videoContainer.classList.toggle("show");
-//     gsap.fromTo(".video__popup-wrapper", 0.5,
-//       { opacity:0, y:50},
-//       { opacity:1, y:0, ease:Power4.easeOut }
-//     );
-//     stopLenisScroll();
-//   }
-
-//   playBtns.forEach((playBtn, index) => {
-//     playBtn.addEventListener("click",() => {
-//       const videoId = playBtn.dataset.id;
-//       iframe.src = `https://www.youtube.com/embed/${videoId}`;
-//       togglePopup();
-//     })
-//   });
-
-//   closeBtn && closeBtn.addEventListener("click", ()=>{
-//     iframe.src = "";
-//     togglePopup();
-//   });
-// }
-//========== Video Play /Pause Button End ============
 
 // ========== Counter script start ============
 const counterSections = document.querySelectorAll(".counter-section");
